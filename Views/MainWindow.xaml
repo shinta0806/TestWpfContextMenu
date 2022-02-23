@@ -6,7 +6,7 @@
     xmlns:l="http://schemas.livet-mvvm.net/2011/wpf"
     xmlns:v="clr-namespace:TestWpfContextMenu.Views"
     xmlns:vm="clr-namespace:TestWpfContextMenu.ViewModels"
-    Title="WPF コンテキストメニューのテスト"
+    Title="WPF コンテキストメニューの制御いろいろ"
     Width="525" ResizeMode="NoResize" SizeToContent="Height" >
 
     <Window.DataContext>
@@ -32,7 +32,7 @@
         <StackPanel Margin="20,10,20,20" >
 
             <!--  シンプルなコンテキストメニュー  -->
-            <Label Content="シンプルなコンテキストメニュー：右クリックでオープン（左クリックではオープンしない）" >
+            <Label Content="シンプルなコンテキストメニュー：右クリックでオープンする（左クリックではオープンしない）" >
                 <Label.ContextMenu>
                     <ContextMenu>
                         <MenuItem Header="シンプルラベルメニュー 1" Command="{Binding MenuItemTestClickedCommand}" CommandParameter="シンプルラベルメニュー 1" />
@@ -47,7 +47,7 @@
             </Label>
 
             <!--  左クリックでもオープンするコンテキストメニュー  -->
-            <Button Name="LabelLeftClick" Content="左クリックでもオープンするコンテキストメニュー" >
+            <Button Name="LabelLeftClick" Content="左クリックでもオープンするコンテキストメニュー（コントロールのイベントを捕捉してオープンする）" >
                 <behaviors:Interaction.Triggers>
                     <behaviors:EventTrigger EventName="Click">
                         <behaviors:ChangePropertyAction TargetObject="{Binding ContextMenu, ElementName=LabelLeftClick}" PropertyName="IsOpen" Value="True"/>
@@ -60,8 +60,14 @@
                         <MenuItem Header="左クリックメニュー 2" Command="{Binding MenuItemTestClickedCommand}" CommandParameter="左クリックメニュー 2" />
                     </ContextMenu>
                 </Button.ContextMenu>
-
             </Button>
+
+            <!--  TextBox デフォルトのコンテキストメニューを非表示にする  -->
+            <StackPanel Orientation="Horizontal" >
+                <Label Content="TextBox デフォルトのコンテキストメニューを非表示にする" />
+                <TextBox Width="100" Text="デフォルト（表示）" VerticalAlignment="Center" />
+                <TextBox Width="100" Text="非表示" VerticalAlignment="Center" ContextMenu="{x:Null}" />
+            </StackPanel>
         </StackPanel>
         <StatusBar >
             <StatusBarItem>
