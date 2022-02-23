@@ -6,9 +6,8 @@
     xmlns:l="http://schemas.livet-mvvm.net/2011/wpf"
     xmlns:v="clr-namespace:TestWpfContextMenu.Views"
     xmlns:vm="clr-namespace:TestWpfContextMenu.ViewModels"
-    Title="MainWindow"
-    Width="525"
-    Height="350">
+    Title="WPF コンテキストメニューのテスト"
+    Width="525" ResizeMode="NoResize" SizeToContent="Height" >
 
     <Window.DataContext>
         <vm:MainWindowViewModel />
@@ -29,5 +28,25 @@
 
     </behaviors:Interaction.Triggers>
 
-    <Grid />
+    <StackPanel>
+        <StackPanel Margin="20,10,20,20" >
+            <Label Content="シンプルなコンテキストメニュー：右クリックでオープン（左クリックではオープンしない）" >
+                <Label.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="シンプルラベルメニュー 1" Command="{Binding MenuItemTestClickedCommand}" CommandParameter="シンプルラベルメニュー 1" />
+                        <Separator />
+                        <MenuItem Header="サブメニュー" >
+                            <MenuItem Header="シンプルラベルサブメニュー 1" Command="{Binding MenuItemTestClickedCommand}" CommandParameter="シンプルラベルサブメニュー 1" />
+                            <MenuItem Header="シンプルラベルサブメニュー 2" Command="{Binding MenuItemTestClickedCommand}" CommandParameter="シンプルラベルサブメニュー 2" />
+                        </MenuItem>
+                    </ContextMenu>
+                </Label.ContextMenu>
+            </Label>
+        </StackPanel>
+        <StatusBar >
+            <StatusBarItem>
+                <Label Content="{Binding StatusBarMessage}" Padding="0" VerticalContentAlignment="Center" />
+            </StatusBarItem>
+        </StatusBar>
+    </StackPanel>
 </Window>
