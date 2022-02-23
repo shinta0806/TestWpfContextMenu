@@ -32,7 +32,7 @@
         <StackPanel Margin="20,10,20,20" >
 
             <!--  シンプルなコンテキストメニュー  -->
-            <Label Content="シンプルなコンテキストメニュー：右クリックでオープンする（左クリックではオープンしない）" >
+            <Label Name="LabelNormal" Content="シンプルなコンテキストメニュー：右クリックでオープンする（左クリックではオープンしない）" >
                 <Label.ContextMenu>
                     <ContextMenu>
                         <MenuItem Header="シンプルラベルメニュー 1" Command="{Binding MenuItemTestClickedCommand}" CommandParameter="シンプルラベルメニュー 1" />
@@ -47,11 +47,11 @@
             </Label>
 
             <!--  左クリックでもオープンするコンテキストメニュー  -->
-            <Button Name="LabelLeftClick" Content="左クリックでもオープンするコンテキストメニュー（コントロールのイベントを捕捉してオープンする）" Margin="0,10,0,0" >
+            <Button Name="ButtonLeftSample" Content="左クリックでもオープンするコンテキストメニュー（コントロールのイベントを捕捉してオープンする）" Margin="0,10,0,0" >
                 <behaviors:Interaction.Triggers>
                     <behaviors:EventTrigger EventName="Click">
-                        <behaviors:ChangePropertyAction TargetObject="{Binding ContextMenu, ElementName=LabelLeftClick}" PropertyName="IsOpen" Value="True"/>
-                        <behaviors:ChangePropertyAction TargetObject="{Binding ContextMenu, ElementName=LabelLeftClick}" PropertyName="PlacementTarget" Value="{Binding ElementName=LabelLeftClick, Mode=OneWay}"/>
+                        <behaviors:ChangePropertyAction TargetObject="{Binding ContextMenu, ElementName=ButtonLeftSample}" PropertyName="IsOpen" Value="True"/>
+                        <behaviors:ChangePropertyAction TargetObject="{Binding ContextMenu, ElementName=ButtonLeftSample}" PropertyName="PlacementTarget" Value="{Binding ElementName=ButtonLeftSample, Mode=OneWay}"/>
                     </behaviors:EventTrigger>
                 </behaviors:Interaction.Triggers>
                 <Button.ContextMenu>
