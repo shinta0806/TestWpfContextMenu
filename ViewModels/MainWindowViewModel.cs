@@ -12,6 +12,7 @@ using Livet;
 using Livet.Commands;
 
 using System;
+using System.Collections.ObjectModel;
 
 namespace TestWpfContextMenu.ViewModels
 {
@@ -24,6 +25,9 @@ namespace TestWpfContextMenu.ViewModels
 		// --------------------------------------------------------------------
 		// View 通信用のプロパティー
 		// --------------------------------------------------------------------
+
+		// ListBox アイテム
+		public ObservableCollection<String> ListBoxItems { get; set; } = new();
 
 		// ステータスバーに表示するメッセージ
 		private String _statusBarMessage = String.Empty;
@@ -67,6 +71,8 @@ namespace TestWpfContextMenu.ViewModels
 		// --------------------------------------------------------------------
 		public void Initialize()
 		{
+			// ListBox アイテム
+			ListBoxItems.Add("ListBox のアイテム右クリックでオープンするコンテキストメニュー（アイテムではない部分ではオープンしない）");
 		}
 	}
 }
