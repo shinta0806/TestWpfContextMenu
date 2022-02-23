@@ -28,8 +28,11 @@ namespace TestWpfContextMenu.ViewModels
 		// View 通信用のプロパティー
 		// --------------------------------------------------------------------
 
-		// ListBox アイテム
-		public ObservableCollection<String> ListBoxItems { get; set; } = new();
+		// デフォルト ListBox のアイテム
+		public ObservableCollection<String> DefaultListBoxItems { get; set; } = new();
+
+		// アイテムのみ右クリックでオープンする ListBox のアイテム
+		public ObservableCollection<String> NarrowListBoxItems { get; set; } = new();
 
 		// ステータスバーに表示するメッセージ
 		private String _statusBarMessage = String.Empty;
@@ -100,8 +103,13 @@ namespace TestWpfContextMenu.ViewModels
 		// --------------------------------------------------------------------
 		public void Initialize()
 		{
-			// ListBox アイテム
-			ListBoxItems.Add("ListBox のアイテムのみ右クリックでオープンするコンテキストメニュー（アイテムではない部分ではオープンしない）");
+			// デフォルト ListBox のアイテム
+			DefaultListBoxItems.Add("デフォルトの ListBox");
+			DefaultListBoxItems.Add("（アイテムではない部分でもコンテキストメニューオープン）");
+
+			// アイテムのみ右クリックでオープンする ListBox のアイテム
+			NarrowListBoxItems.Add("アイテムのみ右クリックでコンテキストメニューオープン");
+			NarrowListBoxItems.Add("（アイテムではない部分ではオープンしない）");
 		}
 
 		// --------------------------------------------------------------------
