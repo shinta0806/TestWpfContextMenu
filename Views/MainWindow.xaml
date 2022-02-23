@@ -30,10 +30,13 @@
 
     <StackPanel>
         <StackPanel Margin="20,10,20,20" >
+
+            <!--  シンプルなコンテキストメニュー  -->
             <Label Content="シンプルなコンテキストメニュー：右クリックでオープン（左クリックではオープンしない）" >
                 <Label.ContextMenu>
                     <ContextMenu>
                         <MenuItem Header="シンプルラベルメニュー 1" Command="{Binding MenuItemTestClickedCommand}" CommandParameter="シンプルラベルメニュー 1" />
+                        <MenuItem Header="シンプルラベルメニュー 2" Command="{Binding MenuItemTestClickedCommand}" CommandParameter="シンプルラベルメニュー 2" />
                         <Separator />
                         <MenuItem Header="サブメニュー" >
                             <MenuItem Header="シンプルラベルサブメニュー 1" Command="{Binding MenuItemTestClickedCommand}" CommandParameter="シンプルラベルサブメニュー 1" />
@@ -42,6 +45,23 @@
                     </ContextMenu>
                 </Label.ContextMenu>
             </Label>
+
+            <!--  左クリックでもオープンするコンテキストメニュー  -->
+            <Button Name="LabelLeftClick" Content="左クリックでもオープンするコンテキストメニュー" >
+                <behaviors:Interaction.Triggers>
+                    <behaviors:EventTrigger EventName="Click">
+                        <behaviors:ChangePropertyAction TargetObject="{Binding ContextMenu, ElementName=LabelLeftClick}" PropertyName="IsOpen" Value="True"/>
+                        <behaviors:ChangePropertyAction TargetObject="{Binding ContextMenu, ElementName=LabelLeftClick}" PropertyName="PlacementTarget" Value="{Binding ElementName=LabelLeftClick, Mode=OneWay}"/>
+                    </behaviors:EventTrigger>
+                </behaviors:Interaction.Triggers>
+                <Button.ContextMenu>
+                    <ContextMenu >
+                        <MenuItem Header="左クリックメニュー 1" Command="{Binding MenuItemTestClickedCommand}" CommandParameter="左クリックメニュー 1" />
+                        <MenuItem Header="左クリックメニュー 2" Command="{Binding MenuItemTestClickedCommand}" CommandParameter="左クリックメニュー 2" />
+                    </ContextMenu>
+                </Button.ContextMenu>
+
+            </Button>
         </StackPanel>
         <StatusBar >
             <StatusBarItem>
