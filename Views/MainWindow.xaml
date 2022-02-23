@@ -77,7 +77,7 @@
                 </TextBox>
             </StackPanel>
 
-            <!--  ListBox のアイテム右クリックでオープンするコンテキストメニュー  -->
+            <!--  ListBox のアイテムのみ右クリックでオープンするコンテキストメニュー  -->
             <ListBox ItemsSource="{Binding ListBoxItems}" Height="50" >
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="ListBoxItem" >
@@ -93,6 +93,22 @@
                     </Style>
                 </ListBox.ItemContainerStyle>
             </ListBox>
+
+            <!--  動的に状態を制御するコンテキストメニュー  -->
+            <Label Content="動的に状態を制御するコンテキストメニュー" >
+                <behaviors:Interaction.Triggers>
+                    <behaviors:EventTrigger EventName="ContextMenuOpening">
+                        <l:LivetCallMethodAction MethodName="PrepareDynamicStateContextMenu" MethodTarget="{Binding}" />
+                    </behaviors:EventTrigger>
+                </behaviors:Interaction.Triggers>
+                <Label.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="{Binding MenuItemHeaderDynamicState}" HeaderStringFormat="{}{0} 1" Command="{Binding MenuItemTestClickedCommand}" CommandParameter="動的状態制御メニュー 1" />
+                        <MenuItem Header="{Binding MenuItemHeaderDynamicState}" HeaderStringFormat="{}{0} 2" Command="{Binding MenuItemTestClickedCommand}" CommandParameter="動的状態制御メニュー 2" IsEnabled="{Binding MenuItemEnabledDynamicState}" />
+                    </ContextMenu>
+                </Label.ContextMenu>
+            </Label>
+
         </StackPanel>
         <StatusBar >
             <StatusBarItem>
